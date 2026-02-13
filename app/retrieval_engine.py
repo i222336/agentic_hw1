@@ -136,7 +136,7 @@ class RetrievalEngine:
             
             # Perform semantic search using LangChain vector store
             if return_scores:
-                results = self.vector_store_manager.similarity_search_with_scores(
+                results = self.vector_store_manager.similarity_search_with_score(
                     query, k=top_k
                 )
                 
@@ -147,6 +147,7 @@ class RetrievalEngine:
                         "rank": idx,
                         "content": doc.page_content,
                         "metadata": doc.metadata,
+                        "score": float(score),
                         "relevance_score": float(score),
                         "source": doc.metadata.get("source", "Unknown")
                     })
@@ -160,6 +161,7 @@ class RetrievalEngine:
                         "rank": idx,
                         "content": doc.page_content,
                         "metadata": doc.metadata,
+                        "score": None,
                         "source": doc.metadata.get("source", "Unknown")
                     })
             

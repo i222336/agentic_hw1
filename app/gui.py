@@ -62,6 +62,15 @@ class SemanticSearchGUI:
         style.configure('Dark.TFrame',
                        background=DARK_BG)
         
+        style.configure('Dark.TLabelframe',
+                       background=DARK_BG,
+                       foreground=DARK_FG,
+                       borderwidth=1)
+        style.configure('Dark.TLabelframe.Label',
+                       background=DARK_BG,
+                       foreground=ACCENT_COLOR,
+                       font=('Arial', 10, 'bold'))
+        
         style.configure('Accent.TLabel',
                        background=DARK_BG,
                        foreground=ACCENT_COLOR,
@@ -89,7 +98,7 @@ class SemanticSearchGUI:
     def _create_data_section(self, parent):
         """Task 1: GUI-Based Data Selection."""
         section = ttk.LabelFrame(parent, text="Task 1: Data Selection", 
-                                style='Dark.TFrame', padding=15)
+                                style='Dark.TLabelframe', padding=15)
         section.pack(fill=tk.X, pady=(0, 10))
         
         # Data source selection
@@ -119,7 +128,7 @@ class SemanticSearchGUI:
     def _create_config_section(self, parent):
         """Task 2: Embedding and Vector Store Configuration."""
         section = ttk.LabelFrame(parent, text="Task 2: Configuration", 
-                                style='Dark.TFrame', padding=15)
+                                style='Dark.TLabelframe', padding=15)
         section.pack(fill=tk.X, pady=(0, 10))
         
         config_frame = ttk.Frame(section, style='Dark.TFrame')
@@ -169,7 +178,7 @@ class SemanticSearchGUI:
     def _create_search_section(self, parent):
         """Task 3: Semantic Retrieval."""
         section = ttk.LabelFrame(parent, text="Task 3: Semantic Search", 
-                                style='Dark.TFrame', padding=15)
+                                style='Dark.TLabelframe', padding=15)
         section.pack(fill=tk.X, pady=(0, 10))
         
         # Query input
@@ -207,7 +216,7 @@ class SemanticSearchGUI:
     def _create_results_section(self, parent):
         """Display search results."""
         section = ttk.LabelFrame(parent, text="Task 3: Search Results", 
-                                style='Dark.TFrame', padding=15)
+                                style='Dark.TLabelframe', padding=15)
         section.pack(fill=tk.BOTH, expand=True)
         
         # Results text area with scrollbar

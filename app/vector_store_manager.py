@@ -92,6 +92,9 @@ class VectorStoreManager:
             if not documents:
                 raise ValueError("No documents provided to create vector store.")
             
+            # Create unique collection name per embedding model to avoid dimension conflicts
+            unique_collection_name = f"{collection_name}_{self.current_model}"
+            
             print(f"Creating {db_type} vector store with {len(documents)} document chunks...")
             
             if db_type == "FAISS":
@@ -107,12 +110,13 @@ class VectorStoreManager:
                 # LangChain Chroma: Persistent vector store
                 # from_documents: Embeds documents and stores in Chroma DB
                 # Supports persistence, metadata filtering, and more
-                persist_directory = os.path.join(VECTOR_STORE_DIR, collection_name)
+                # Use unique directory path per embedding model
+                persist_directory = os.path.join(VECTOR_STORE_DIR, unique_collection_name)
                 
                 self.vector_store = Chroma.from_documents(
                     documents=documents,
                     embedding=self.embeddings,
-                    collection_name=collection_name,
+                    collection_name=unique_collection_name,
                     persist_directory=persist_directory
                 )
                 
@@ -221,7 +225,7 @@ class VectorStoreManager:
         except Exception as e:
             raise Exception(f"Error performing similarity search: {str(e)}")
     
-    def similarity_search_with_scores(self, query: str, k: int = 5) -> List[tuple]:
+    def similarity_search_with_score(self, query: str, k: int = 5) -> List[tuple]:
         """
         Perform similarity search and return documents with relevance scores.
         
