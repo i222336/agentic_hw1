@@ -109,11 +109,4 @@ python test_all_configs.py
 - **Deep Learning:** PyTorch 2.10.0+cpu
 - **GUI:** Tkinter with custom dark theme
 
-## Deliverables Checklist
-
-- [x] GUI-based application (app/main.py)
-- [x] Complete source code (app/ directory)
-- [x] Short report 2-3 pages (SUBMISSION_REPORT.txt)
-- [x] Test results and evaluation
-- [x] Working installation and setup
 
